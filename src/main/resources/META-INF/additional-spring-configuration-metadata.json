@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "api.random-data.url",
+  "type": "java.lang.String",
+  "description": "URL of the random API"
+}]}
