@@ -10,22 +10,23 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.models.entities.Movie.Movie;
 import com.api.models.responses.RestResponse.RestResponse;
 import com.api.services.MapperService.IMapperService;
+import com.api.services.MovieService.IMovieService;
 
 @RestController
 public class MovieController {
 	
 	private IMapperService mapperService;
+	private IMovieService movieService;
 	
-	public MovieController(IMapperService mapperService) {
+	public MovieController(IMapperService mapperService, IMovieService movieService) {
 		this.mapperService = mapperService;
+		this.movieService = movieService;
 	}
 	
 	@GetMapping("/")
 	@ResponseBody
 	public RestResponse getMovies() {
-		Movie newMovie = new Movie(1, "Toy Story", "2000-01-01", 9.5);
-		Movie[] movTemp = {newMovie};
-		List<Movie> movies = Arrays.asList(movTemp);
+		List<Movie> movies = this.movieService.getAllMovies();
 		RestResponse response = new RestResponse(movies);
 		return response;
 	}
