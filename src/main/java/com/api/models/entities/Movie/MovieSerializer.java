@@ -1,7 +1,7 @@
 package com.api.models.entities.Movie;
 
 import java.io.IOException;
-
+import java.text.SimpleDateFormat;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
@@ -27,7 +27,7 @@ public class MovieSerializer extends StdSerializer<Movie>{
 		gen.writeStartObject();
 		gen.writeNumberField("id", value.getId());
 		gen.writeStringField("title", value.getTitle());
-		gen.writeStringField("releaseDate", value.getReleaseDate());
+		gen.writeStringField("releaseDate", new SimpleDateFormat("YYYY-MM-DD").format(value.getReleaseDate()));
 		gen.writeNumberField("rating", value.getRating());
 		gen.writeEndObject();
 	}
